@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1x2fivmdb1al"]
+
+[ext_resource type="Script" path="res://scenes/main/tube.gd" id="1_3med3"]
+[ext_resource type="Texture2D" uid="uid://dr27mys2t4dto" path="res://scenes/main/assets/crate.png" id="1_fmtjh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0broa"]
+atlas = ExtResource("1_fmtjh")
+region = Rect2(8, 10, 17, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7in5a"]
+size = Vector2(17.2, 105.8)
+
+[node name="Tube" type="Area2D"]
+scale = Vector2(10, 10)
+monitorable = false
+script = ExtResource("1_3med3")
+
+[node name="BottomCrates" type="Node2D" parent="."]
+position = Vector2(0, 15.2)
+
+[node name="Crate1" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 19)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate2" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 34)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate3" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 49)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate4" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 64)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate5" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 79)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate6" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 94)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate7" type="Sprite2D" parent="BottomCrates"]
+position = Vector2(0, 109)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="BottomCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 78.8)
+shape = SubResource("RectangleShape2D_7in5a")
+
+[node name="UpCrates" type="Node2D" parent="."]
+position = Vector2(0, -14.5)
+
+[node name="Crate1" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -19)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate2" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -34)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate3" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -49)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate4" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -64)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate5" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -79)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate6" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -94)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="Crate7" type="Sprite2D" parent="UpCrates"]
+position = Vector2(0, -108.9)
+texture = SubResource("AtlasTexture_0broa")
+
+[node name="UpCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(2.38418e-08, -78)
+shape = SubResource("RectangleShape2D_7in5a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

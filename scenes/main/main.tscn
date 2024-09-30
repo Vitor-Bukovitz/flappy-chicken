@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://buq178fk182yn"]
+
+[ext_resource type="Texture2D" uid="uid://bhxu65oh8qvw2" path="res://scenes/main/assets/trees.png" id="1_jqqyt"]
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_s135v"]
+[ext_resource type="Texture2D" uid="uid://dknqrt5h00q7i" path="res://scenes/main/assets/clouds.png" id="2_urr57"]
+[ext_resource type="PackedScene" uid="uid://y4rrbspfcway" path="res://entities/player/player.tscn" id="4_ev4oc"]
+[ext_resource type="Script" path="res://scenes/main/tube_spawner.gd" id="4_pm148"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwsmy"]
+atlas = ExtResource("2_urr57")
+region = Rect2(0, 0, 64.0776, 20.7425)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_s135v")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ParallaxTrees" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(1070, 0)
+autoscroll = Vector2(-200, 0)
+
+[node name="TreesSprite" type="Sprite2D" parent="Background/ParallaxTrees"]
+modulate = Color(6.73831e-06, 0.977552, 0.79285, 1)
+position = Vector2(539, 1670)
+scale = Vector2(4.2168, 4.2168)
+texture = ExtResource("1_jqqyt")
+
+[node name="ParallaxCloud" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(920, 0)
+autoscroll = Vector2(-100, 0)
+
+[node name="Clouds" type="Sprite2D" parent="Background/ParallaxCloud"]
+position = Vector2(465, 531)
+scale = Vector2(8.58333, 8.58333)
+texture = SubResource("AtlasTexture_uwsmy")
+
+[node name="Clouds2" type="Sprite2D" parent="Background/ParallaxCloud"]
+position = Vector2(662, 311)
+scale = Vector2(-8.583, 8.583)
+texture = SubResource("AtlasTexture_uwsmy")
+
+[node name="TubeSpawner" type="Node2D" parent="."]
+script = ExtResource("4_pm148")
+
+[node name="Tubes" type="Node2D" parent="TubeSpawner"]
+
+[node name="Timer" type="Timer" parent="TubeSpawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("4_ev4oc")]
+position = Vector2(432, 1072)
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 223.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+
+[node name="Label" type="Label" parent="Container/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+horizontal_alignment = 1
+
+[connection signal="hit_tube" from="TubeSpawner" to="." method="_on_tube_spawner_hit_tube"]
+[connection signal="pass_tube" from="TubeSpawner" to="." method="_on_tube_spawner_pass_tube"]
+[connection signal="timeout" from="TubeSpawner/Timer" to="TubeSpawner" method="_on_timer_timeout"]

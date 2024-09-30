@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://y4rrbspfcway"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_5ju51"]
+[ext_resource type="Texture2D" uid="uid://1s6vmm24el56" path="res://entities/player/assets/chicken.png" id="1_aeuwp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qk2eu"]
+size = Vector2(16.8, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v6uk"]
+atlas = ExtResource("1_aeuwp")
+region = Rect2(7, 16, 17, 15)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_5ju51")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.43051e-06, 7.09295e-07)
+shape = SubResource("RectangleShape2D_qk2eu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_2v6uk")
+flip_h = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
