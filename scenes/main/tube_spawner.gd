@@ -1,3 +1,5 @@
+class_name TubeSpawner
+
 extends Node2D
 
 signal hit_tube
@@ -9,6 +11,7 @@ const TUBE_SPAWN_DISTANCE: float = 200.0
 const TUBE_VERTICAL_RANGE: float = 300.0
 
 @onready var tubes: Node2D = $Tubes
+@onready var timer: Timer = $Timer
 @onready var viewport_size: Vector2 = tubes.get_viewport_rect().size
 
 var tube_scene: PackedScene = preload("res://scenes/main/tube.tscn")
@@ -36,5 +39,10 @@ func _on_timer_timeout() -> void:
 	if tubes.get_child_count() >= 2:
 		pass_tube.emit()
 
-func _on_hit_tube() -> void:
-	hit_tube.emit()
+func _on_hit_tube(collision_point: Vector2) -> void:
+	hit_tube.emit(collision_point)
+
+func reset() -> void:
+	timer.start()
+	for child: Node in tubes.get_children():
+		child.queue_free()

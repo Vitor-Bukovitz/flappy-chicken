@@ -1,14 +1,153 @@
-[gd_scene load_steps=7 format=3 uid="uid://buq178fk182yn"]
+[gd_scene load_steps=23 format=3 uid="uid://buq178fk182yn"]
 
-[ext_resource type="Texture2D" uid="uid://bhxu65oh8qvw2" path="res://scenes/main/assets/trees.png" id="1_jqqyt"]
+[ext_resource type="Texture2D" uid="uid://bhxu65oh8qvw2" path="res://scenes/main/assets/images/trees.png" id="1_jqqyt"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_s135v"]
-[ext_resource type="Texture2D" uid="uid://dknqrt5h00q7i" path="res://scenes/main/assets/clouds.png" id="2_urr57"]
+[ext_resource type="Texture2D" uid="uid://bssgpncehioia" path="res://scenes/main/assets/images/clouds.png" id="2_urr57"]
 [ext_resource type="PackedScene" uid="uid://y4rrbspfcway" path="res://entities/player/player.tscn" id="4_ev4oc"]
 [ext_resource type="Script" path="res://scenes/main/tube_spawner.gd" id="4_pm148"]
+[ext_resource type="Texture2D" uid="uid://co7ebtjvcpka5" path="res://scenes/main/assets/images/hit.png" id="5_lp154"]
+[ext_resource type="AudioStream" uid="uid://qmc2ftnn81c3" path="res://scenes/main/assets/sfx/hit.ogg" id="7_mi60l"]
+[ext_resource type="FontFile" uid="uid://c3kbw1ycyjdqw" path="res://scenes/main/assets/fonts/Font.ttf" id="7_mxyg8"]
+[ext_resource type="AudioStream" uid="uid://43rks0ls3r4j" path="res://scenes/main/assets/sfx/score.ogg" id="8_6rlso"]
+[ext_resource type="AudioStream" uid="uid://1nr101r3b5e3" path="res://scenes/main/assets/sfx/retro_beat.ogg" id="9_7h4fe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uwsmy"]
 atlas = ExtResource("2_urr57")
-region = Rect2(0, 0, 64.0776, 20.7425)
+region = Rect2(111, 63, 34, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks5df"]
+atlas = ExtResource("2_urr57")
+region = Rect2(15, 111, 50, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i22rl"]
+atlas = ExtResource("5_lp154")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkmua"]
+atlas = ExtResource("5_lp154")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lualb"]
+atlas = ExtResource("5_lp154")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qytd"]
+atlas = ExtResource("5_lp154")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o0y8"]
+atlas = ExtResource("5_lp154")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poi6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i22rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkmua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lualb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qytd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o0y8")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 20.0
+}]
+
+[sub_resource type="Theme" id="Theme_yxuy5"]
+default_font = ExtResource("7_mxyg8")
+
+[sub_resource type="Animation" id="Animation_vbar0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/CenterMarginContainer/EndLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackgroundAudio:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0dwun"]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0.313726)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/CenterMarginContainer/EndLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackgroundAudio:volume_db")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -15.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyn51"]
+_data = {
+"RESET": SubResource("Animation_vbar0"),
+"end": SubResource("Animation_0dwun")
+}
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s135v")
@@ -28,18 +167,22 @@ texture = ExtResource("1_jqqyt")
 [node name="ParallaxCloud" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(920, 0)
 autoscroll = Vector2(-100, 0)
+repeat_times = 2
 
 [node name="Clouds" type="Sprite2D" parent="Background/ParallaxCloud"]
 position = Vector2(465, 531)
 scale = Vector2(8.58333, 8.58333)
 texture = SubResource("AtlasTexture_uwsmy")
+flip_v = true
 
 [node name="Clouds2" type="Sprite2D" parent="Background/ParallaxCloud"]
 position = Vector2(662, 311)
 scale = Vector2(-8.583, 8.583)
-texture = SubResource("AtlasTexture_uwsmy")
+texture = SubResource("AtlasTexture_ks5df")
+flip_v = true
 
 [node name="TubeSpawner" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("4_pm148")
 
 [node name="Tubes" type="Node2D" parent="TubeSpawner"]
@@ -48,8 +191,14 @@ script = ExtResource("4_pm148")
 wait_time = 2.0
 autostart = true
 
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_poi6w")
+animation = &"hit"
+
 [node name="Player" parent="." instance=ExtResource("4_ev4oc")]
-position = Vector2(432, 1072)
+position = Vector2(430, 1080)
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -60,20 +209,101 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource("Theme_yxuy5")
 
-[node name="MarginContainer" type="MarginContainer" parent="Container"]
+[node name="ColorRect" type="ColorRect" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScoreMarginContainer" type="MarginContainer" parent="Container"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 223.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 12
 
-[node name="Label" type="Label" parent="Container/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/ScoreMarginContainer"]
+layout_mode = 2
+
+[node name="HighestScoreLabel" type="Label" parent="Container/ScoreMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 68
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Container/ScoreMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 
+[node name="CenterMarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -268.0
+offset_top = -55.0
+offset_right = 268.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 300
+
+[node name="GameNameLabel" type="Label" parent="Container/CenterMarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "FLAPPY
+CHICKEN"
+horizontal_alignment = 1
+
+[node name="EndLabel" type="Label" parent="Container/CenterMarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "YOU DIED
+TAP TO START AGAIN"
+horizontal_alignment = 1
+
+[node name="BottomMarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 400
+
+[node name="StartLabel" type="Label" parent="Container/BottomMarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "TAP TO START"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xyn51")
+}
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_mi60l")
+
+[node name="ScoreAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6rlso")
+
+[node name="BackgroundAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7h4fe")
+autoplay = true
+
 [connection signal="hit_tube" from="TubeSpawner" to="." method="_on_tube_spawner_hit_tube"]
 [connection signal="pass_tube" from="TubeSpawner" to="." method="_on_tube_spawner_pass_tube"]
 [connection signal="timeout" from="TubeSpawner/Timer" to="TubeSpawner" method="_on_timer_timeout"]
+[connection signal="player_exit_screen" from="Player" to="." method="_on_player_player_exit_screen"]

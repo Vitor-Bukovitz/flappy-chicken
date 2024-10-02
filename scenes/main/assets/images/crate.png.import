@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2vfwv5muh50g"
-path="res://.godot/imported/water.png-ee8b82c31fb9a56b364006e506f30d63.ctex"
+uid="uid://dr27mys2t4dto"
+path="res://.godot/imported/crate.png-a90dad4744836eec1d1e7bf37cf4a69a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/assets/water.png"
-dest_files=["res://.godot/imported/water.png-ee8b82c31fb9a56b364006e506f30d63.ctex"]
+source_file="res://scenes/main/assets/images/crate.png"
+dest_files=["res://.godot/imported/crate.png-a90dad4744836eec1d1e7bf37cf4a69a.ctex"]
 
 [params]
 
